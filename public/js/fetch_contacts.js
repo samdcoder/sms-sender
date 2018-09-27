@@ -1,14 +1,13 @@
 $(document).ready(function(){
 
 	  $.ajax({
-            url: "/getJson",
+            url: "/api/contacts/",
             type: 'GET',
             success: function (data) {
-                
                 var result = $('#contact-list');
                 data = data['contacts'];
                for(var key in data){
-               	result.append('<a href="/user/' +data[key].id + '"' +  ' onclick="getDetails(\'this\')"> <h3> '+ data[key].id + ". " + data[key].firstName + '  ' + data[key].lastName + '</a> </li> <br><br>');
+               	result.append('<a href="/user/' +data[key].id + '"' + ' <h3> '+ data[key].id + ". " + data[key].firstName + '  ' + data[key].lastName + '</a> </li> <br><br>');
                }    
                
             },
@@ -18,6 +17,3 @@ $(document).ready(function(){
        });
 });
 
-function getDetails(obj){
-  console.log("in the get details, uid: "+$(obj).attr('data-uid'));
-}

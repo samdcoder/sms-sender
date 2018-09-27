@@ -11,14 +11,44 @@ const PORT = process.env.port || 3000;
 //mongoose.connect('mongodb+srv://samdcoder:'+env.mongopw+'@cluster0-bcmtk.mongodb.net/test?retryWrites=true');
 
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(bodyParser());
+app.use(bodyParser.json()); // for parsing application/json
+app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+
+
+//APIs
+app.get('/api/userData', function(request, response){
+
+	let data_obj;
+	for(key in request.query){
+		data_obj = JSON.parse(key);
+		break;
+	}
+	let uid = data_obj.uid;
+	let user_details = {};
+	let contacts = JSON.parse(fs.readFileSync('contacts.json', 'utf8'));
+	contacts = contacts["contacts"];
+	for(index in contacts){
+		if(contacts[index].id == uid){
+			user_details = contacts[index];
+			break;
+		}
+	}
+	response.json(user_details);
+});
+
+app.get('/api/contacts', function(request, response){
+	var contacts = JSON.parse(fs.readFileSync('contacts.json', 'utf8'));
+	response.json(contacts);
+});
+
+
+//static file server
 
 app.get('/', function(request, response){
 	response.sendFile('index.html');
 });
 
 app.post('/', function(request, response){
-		console.log("in the root call!");
 		var user_email = request.body.email;
 		
 		//save data to the database
@@ -48,19 +78,11 @@ app.get('/contacts', function(request, response){
 	
 });
 
-app.get('/user', function(request, response){
-
+app.get('/user/:id/', function(request, response){
 	response.sendFile('user.html', {root: path.join(__dirname, 'public')});
 	
 });
 
-
-
-app.get('/getJson', function(request, response){
-	var obj = JSON.parse(fs.readFileSync('contacts.json', 'utf8'));
-	console.log(obj);
-	response.json(obj);
-});
 
 app.use(function(request, response, next){
   response.sendFile('404.html', {root: path.join(__dirname, 'public')});
