@@ -50,10 +50,12 @@ app.get('/', function(request, response){
 });
 
 app.post('/', function(request, response){
+		console.log("request = ", request.body);
 		var user_email = request.body.email;
 		
+
 		//save data to the database
-		const user = new User({
+	/*	const user = new User({
 			_id: new mongoose.Types.ObjectId(),
 			name: request.body.name,
 			email: request.body.email,
@@ -70,7 +72,7 @@ app.post('/', function(request, response){
 		});
 		response.send({'message': 'Successfully stored the data!', 'code':200});
 		
-	
+		*/
 });
 
 app.get('/contacts', function(request, response){
@@ -85,7 +87,7 @@ app.get('/user/:id/', function(request, response){
 });
 
 
-app.get('/send-message/:id', function(request, response){
+app.get('/send-message-page/:id', function(request, response){
 	response.sendFile('send_message.html', {root: path.join(__dirname, 'public')});	
 })
 

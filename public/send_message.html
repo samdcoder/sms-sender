@@ -6,21 +6,43 @@
  	 src="https://code.jquery.com/jquery-2.2.4.min.js"
   	 integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
   	 crossorigin="anonymous"></script>
+	<script type="text/javascript" src="/js/send_message.js"></script>
 	<script type="text/javascript" src="/js/details.js"></script>
+	
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Send Message</title>
 </head>
 <body>
 	<br>
-	<h4 class="text-primary"> <center> Send Message </center> </h4>
-	<div id="details">
-	</div>		
-	<br> <br> 
-	<textarea>
 		
-	</textarea>
-	<input type="button" value="Send Message">
-		
+	<h2 class="text-primary"> <center> Send Message </center> </h2> <br>
+	<div style="text-align: center;">
+		<div id="details">
+		</div>		
+		<br> <br> 
+	
 
+			<form method="post" id="send-message-form" name='send-message-form' action = "/" class="form-horizontal" enctype="multipart/form-data">
+
+			<div class="form-group col-lg-12">
+				<label for="user-message"> Message </label>
+				<textarea rows="4" cols="50" id="user-message" name='user-message' >
+				</textarea>
+			</div>
+		
+			<br>
+			<div class="form-group col-lg-8 text-center">
+				<input class="btn-primary btn-block" id="send-message-button" type="submit" value="Send Message">
+			</div>
+		
+		</form>
+
+
+
+
+
+	<div>
+	<div id="result">
+	</div>
 </body>
 </html>
