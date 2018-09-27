@@ -42,6 +42,7 @@ app.get('/api/contacts', function(request, response){
 });
 
 
+
 //static file server
 
 app.get('/', function(request, response){
@@ -82,6 +83,11 @@ app.get('/user/:id/', function(request, response){
 	response.sendFile('user.html', {root: path.join(__dirname, 'public')});
 	
 });
+
+
+app.get('/send-message/:id', function(request, response){
+	response.sendFile('send_message.html', {root: path.join(__dirname, 'public')});	
+})
 
 
 app.use(function(request, response, next){
