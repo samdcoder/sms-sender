@@ -48,6 +48,14 @@ app.get('/contacts', function(request, response){
 	
 });
 
+app.get('/user', function(request, response){
+
+	response.sendFile('user.html', {root: path.join(__dirname, 'public')});
+	
+});
+
+
+
 app.get('/getJson', function(request, response){
 	var obj = JSON.parse(fs.readFileSync('contacts.json', 'utf8'));
 	console.log(obj);
