@@ -1,0 +1,16 @@
+{
+  "name": "sms-sender",
+  "version": "1.0.0",
+  "description": "This application will be an sms sender to the users",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sameer Pathan",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.3",
+    "mongoose": "^5.2.17",
+    "nodemon": "^1.18.4"
+  }
+}

@@ -1,0 +1,13 @@
+{
+	"contacts": [{
+			"firstName": "Sameer",
+			"lastName": "Pathan",
+			"phone": 8149227289
+		},
+		{
+			"firstName": "Jatin",
+			"lastName": "Chawda",
+			"phone": 8888888888
+		}
+	]
+}
