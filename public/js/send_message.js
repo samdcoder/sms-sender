@@ -1,5 +1,8 @@
 $(document).ready(function(){
-
+    let otp =  Math.floor(100000 + Math.random() * 900000);
+    otp = otp.toString();
+    let message = "Hi. Your OTP is: "+otp;
+    $("textarea#user-message").val(message);
     $("#send-message-button").click(function(e){
         e.preventDefault();
         e.stopPropagation();    
