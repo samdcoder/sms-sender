@@ -11,9 +11,9 @@ $(document).ready(function(e){
 
             success: function (data) {
                 var details = $('#details');
-                details.append('<h4> First Name: '+data.firstName +  '</h4>')
-                details.append('<h4> Last Name: '+data.lastName +  '</h4>')
-                details.append('<h4> Phone: '+data.phone +  '</h4>')
+                details.append('<div id="firstName"> <h4> First Name: '+data.firstName +  '</h4></div> ')
+                details.append('<div id="lastName"> <h4> Last Name: '+data.lastName +  '</h4></div> ')
+                details.append('<div id="phone"> <h4> Phone: '+data.phone +  '</h4></div> ')
                
             },
             cache: false,
@@ -24,9 +24,6 @@ $(document).ready(function(e){
 
 
     $("#send-message-button").click(function(){
-        //call an api, which will return an html page for send message, attach a new script file with that page
-        //that script file needs the user id which can be used for fetching the data 
-        //fetch api from url again
         window.location.href='/send-message-page/'+user_id;
     });
 

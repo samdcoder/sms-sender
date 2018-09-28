@@ -56,19 +56,19 @@ app.get('/', function(request, response){
 });
 
 app.post('/', function(request, response){
-		
+		let otp = request.body['otp'];
 		let user_message = ``;
+		console.log("request.body = ", request.body);
 		user_message = request.body['message'];
 		user_message = user_message.trim();
-		let otp =  Math.floor(100000 + Math.random() * 900000);
-		otp = otp.toString();
-		
-		/* nexmo.message.sendSms(
+	
+
+	/*	nexmo.message.sendSms(
    			"918149227289" , "918149227289", request.body['message'], {type: 'unicode'},
    				(err, responseData) => {if (responseData) {console.log(responseData);}}
  				);
  			response.send('SMS Message Sent');
-	*/	
+		*/
 		//save data to the database
 	/*	const user = new User({
 			_id: new mongoose.Types.ObjectId(),

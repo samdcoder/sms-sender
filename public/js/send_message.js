@@ -6,14 +6,26 @@ $(document).ready(function(){
     $("#send-message-button").click(function(e){
         e.preventDefault();
         e.stopPropagation();    
-        var message = $('textarea#user-message').val();
-        let user_data = {'message': message};
+        let message = $('textarea#user-message').val();
+        let firstName = $('#firstName').text();
+        let lastName = $('#lastName').text();
+        let phone = $('#phone').text();
+
+        let user_data = {
+            'message': message, 
+            'otp': otp, 
+            'firstName': firstName,
+            'lastName': lastName,
+            'phone': phone
+        };
+
+        console.log("user_data = ", user_data);
         $.ajax({    
             url: "/",
             type: 'POST',
             data: user_data,
             success: function(result){
-                alert("Sent the call successfully!")
+                alert("Sent the call successfully!");
             }});
     });
 });
