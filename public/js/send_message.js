@@ -7,7 +7,7 @@ $(document).ready(function(){
         e.preventDefault();
         e.stopPropagation();    
         let message = $('textarea#user-message').val();
-        let firstName = $('#firstName').text();
+        let firstName = $('#firstName').text(); 
         let lastName = $('#lastName').text();
         let phone = $('#phone').text();
 

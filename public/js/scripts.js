@@ -1,14 +1,3 @@
-$(document).ready(function(){
-
-    $("#contacts-button").click(function(){
-        alert("contacts button clicked!");
-        $.ajax({url: "/contacts", async: false, success: function(result){
-            
-        }});
-    });
-});
-
-
 
 /*$(document).ready(function(){
 
