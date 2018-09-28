@@ -6,7 +6,13 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 //const User = require('./models/user');
 const env = require('./env');
+const utf8 = require('utf8');
 const PORT = process.env.port || 3000; 
+const Nexmo = require('nexmo');
+const nexmo = new Nexmo({
+ apiKey: env.API_KEY,
+ apiSecret: env.SECRET
+});
 
 //mongoose.connect('mongodb+srv://samdcoder:'+env.mongopw+'@cluster0-bcmtk.mongodb.net/test?retryWrites=true');
 
@@ -51,9 +57,18 @@ app.get('/', function(request, response){
 
 app.post('/', function(request, response){
 		console.log("request = ", request.body);
-		var user_email = request.body.email;
 		
-
+		let user_message = ``;
+		user_message = request.body['message'];
+		user_message = user_message.trim();
+		console.log("user_message: ", user_message);
+		
+		 nexmo.message.sendSms(
+   			"918149227289" , "918149227289", request.body['message'], {type: 'unicode'},
+   				(err, responseData) => {if (responseData) {console.log(responseData);}}
+ 				);
+ 			response.send('SMS Message Sent');
+		
 		//save data to the database
 	/*	const user = new User({
 			_id: new mongoose.Types.ObjectId(),
