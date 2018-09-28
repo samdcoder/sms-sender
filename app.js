@@ -14,7 +14,7 @@ const nexmo = new Nexmo({
  apiSecret: env.SECRET
 });
 
-//mongoose.connect('mongodb+srv://samdcoder:'+env.mongopw+'@cluster0-bcmtk.mongodb.net/test?retryWrites=true');
+mongoose.connect('mongodb+srv://samdcoder:'+env.mongopw+'@smsdata-fkbfi.mongodb.net/test?retryWrites=true');
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json()); // for parsing application/json
@@ -42,6 +42,7 @@ app.get('/api/userData', function(request, response){
 	response.json(user_details);
 });
 
+
 app.get('/api/contacts', function(request, response){
 	var contacts = JSON.parse(fs.readFileSync('contacts.json', 'utf8'));
 	response.json(contacts);
@@ -58,10 +59,18 @@ app.get('/', function(request, response){
 app.post('/', function(request, response){
 		let otp = request.body['otp'];
 		let user_message = ``;
+		let firstName = request.body['firstName'];
+		let lastName = request.body['lastName'];
+		firstName = firstName.split(':')[1].trim();
+		lastName = lastName.split(':')[1].trim();
+
 		console.log("request.body = ", request.body);
 		user_message = request.body['message'];
 		user_message = user_message.trim();
 		let status = '0';
+		console.log("firstName = ", firstName);
+		console.log("lastName = ", lastName);
+
 
 	/*	nexmo.message.sendSms(
    			"918149227289" , "918149227289", request.body['message'], {type: 'unicode'},
@@ -73,34 +82,33 @@ app.post('/', function(request, response){
 						status = '-1';
    					}
  				);
- 			response.send('SMS Message Sent');
 	*/	
-
+	let current_time = Date.now();
 	//check the value of status 
 	if(status == '0'){
 		//sent message successfully
 		//update in the database
-	}
-
-		//save data to the database
-	/*	const user = new User({
+		const record = new History({
 			_id: new mongoose.Types.ObjectId(),
-			name: request.body.name,
-			email: request.body.email,
-			phone:  request.body.phone,
-			job: request.body.job
+			firstName: firstName,
+			lastName: lastName,
+			otp: otp		
 		});
 
-		user.save(function(err){
+		//writing to mongodb
+		record.save(function(err){
 			if(err){
 				response.send({'message': err, 'code':400});
 				console.log("Error: ", err);
-				return;
 			}
 		});
-		response.send({'message': 'Successfully stored the data!', 'code':200});
-		
-		*/
+
+		response.send({'message': 'Successfully updated the log!', 'code':200});
+	}
+	else{
+		response.send('message': 'Could not send the message!', 'code': 400);
+	}
+
 });
 
 app.get('/contacts', function(request, response){

@@ -5,8 +5,8 @@ const historySchema = mongoose.Schema({
 	firstName: String,
 	lastName: String, 
 	otp: String, 
-	sent_at: { type : Date, default: Date.now }
-});
+	{timestamps: true}
+);
 
-module.exports = mongoose.model('History', userSchema);
+module.exports = mongoose.model('History', historySchema);
 
