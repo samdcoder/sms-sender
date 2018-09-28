@@ -10,6 +10,22 @@ $(document).ready(function(){
                 }
                 else{
                   let data = response['data'];
+                  let table_gen = ``;
+                  let current = `<table class="table">
+                                <thead>
+                                <tr>
+                                  <th scope="col">#</th>
+                                  <th scope="col">Name</th>
+                                  <th scope="col">OTP</th>
+                                  <th scope="col">Date</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                    `;
+
+                  table_gen += current;
+
+                  let counter = 1;
                   for(var key in data){
                     // need to convert date to IST
                     var dateUTC = new Date(data[key].createdAt);
@@ -19,8 +35,19 @@ $(document).ready(function(){
                     dateIST.setHours(dateIST.getHours() + 5); 
                     dateIST.setMinutes(dateIST.getMinutes() + 30);
 
-               	    result.append('<h3>' +data[key].firstName + ' ' + data[key].lastName + ' ' + data[key].otp + ' ' + dateIST + '</h3>');
-                    } 
+                    current =   `
+                                <tr>
+                                <th scope="row">${counter}</th>
+                                  <td>${data[key].firstName} ${data[key].lastName}</td>
+                                  <td>${data[key].otp}</td>
+                                  <td>${dateIST}</td>
+                               </tr>
+                      `;
+                    table_gen += current;
+                      counter++;
+                    }
+                    table_gen += '</tbody></table>'; 
+                    result.append(table_gen);
                   }                  
             },
             cache: false,
