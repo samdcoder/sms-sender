@@ -10,11 +10,13 @@ $(document).ready(function(e){
             dataType   : "json",
 
             success: function (data) {
-                var details = $('#details');
-                details.append('<div id="firstName"> <h4> First Name: '+data.firstName +  '</h4></div> ')
-                details.append('<div id="lastName"> <h4> Last Name: '+data.lastName +  '</h4></div> ')
-                details.append('<div id="phone"> <h4> Phone: '+data.phone +  '</h4></div> ')
-               
+                var details = $('#details'); 
+                details.append(`
+                    <div class="card">
+                        <img src="/assets/profile_pic.jpg" alt="John" style="width:100%">
+                        <h3 id="firstName">${data.firstName}</h3> <h3 id="lastName"> ${data.lastName} </h3>
+                        <h3 id="phone"> ${data.phone} </h3>
+                    `);
             },
             cache: false,
             contentType: false,
