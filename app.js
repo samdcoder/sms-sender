@@ -42,24 +42,22 @@ app.get('/api/userData', function(request, response){
 	response.json(user_details);
 });
 
-
 app.get('/api/contacts', function(request, response){
 	var contacts = JSON.parse(fs.readFileSync('contacts.json', 'utf8'));
 	response.json(contacts);
 });
 
 app.get('/api/sent', function(request, response){
-	History.find({}).sort('-date').exec(function(err, docs) { 
+	//fetching and sorting in descending order of the date
+	History.find({}).sort('-createdAt').exec(function(err, docs) { 
 			if(err){
 				console.log("error: ", err);
 				response.send({'message': 'error', 'code': 400});
 			}
 			response.send({'data': docs, 'code': 200});
-
 	 });
 
 });
-
 
 
 //static file server
@@ -91,7 +89,7 @@ app.post('/', function(request, response){
    					}
  				);
 	*/	
-	let current_time = Date.now();
+
 	//check the value of status 
 	if(status == '0'){
 		//sent message successfully
@@ -134,7 +132,11 @@ app.get('/user/:id/', function(request, response){
 
 app.get('/send-message-page/:id', function(request, response){
 	response.sendFile('send_message.html', {root: path.join(__dirname, 'public')});	
-})
+});
+
+app.get('/sent_page/', function(request, response){
+	response.sendFile('sent_page.html', {root: path.join(__dirname, 'public')});	
+});	
 
 
 app.use(function(request, response, next){
