@@ -24,7 +24,15 @@ $(document).ready(function(){
             type: 'POST',
             data: user_data,
             success: function(result){
-                alert("Sent the call successfully!");
+                console.log("result = ", result); 
+                if(result.code == 200){
+                    alert("successfully sent the message!");
+                }
+                else{
+                    alert("Error in sending the message!");
+                }
+                let host =  window.location.host;
+                window.location.href="/";
             }});
     });
 });

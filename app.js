@@ -48,6 +48,18 @@ app.get('/api/contacts', function(request, response){
 	response.json(contacts);
 });
 
+app.get('/api/sent', function(request, response){
+	History.find({}).sort('-date').exec(function(err, docs) { 
+			if(err){
+				console.log("error: ", err);
+				response.send({'message': 'error', 'code': 400});
+			}
+			response.send({'data': docs, 'code': 200});
+
+	 });
+
+});
+
 
 
 //static file server
@@ -63,13 +75,9 @@ app.post('/', function(request, response){
 		let lastName = request.body['lastName'];
 		firstName = firstName.split(':')[1].trim();
 		lastName = lastName.split(':')[1].trim();
-
-		console.log("request.body = ", request.body);
 		user_message = request.body['message'];
 		user_message = user_message.trim();
 		let status = '0';
-		console.log("firstName = ", firstName);
-		console.log("lastName = ", lastName);
 
 
 	/*	nexmo.message.sendSms(
@@ -96,17 +104,18 @@ app.post('/', function(request, response){
 		});
 
 		//writing to mongodb
-		record.save(function(err){
+		record.save(function(err, result){
 			if(err){
 				response.send({'message': err, 'code':400});
 				console.log("Error: ", err);
 			}
+			console.log("No error. result = ", result);
 		});
 
 		response.send({'message': 'Successfully updated the log!', 'code':200});
 	}
 	else{
-		response.send('message': 'Could not send the message!', 'code': 400);
+		response.send({'message': 'Could not send the message!', 'code': 400});
 	}
 
 });

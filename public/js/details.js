@@ -21,8 +21,6 @@ $(document).ready(function(e){
             processData: false
        });
 
-
-
     $("#send-message-button").click(function(){
         window.location.href='/send-message-page/'+user_id;
     });

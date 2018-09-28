@@ -1,5 +1,4 @@
 $(document).ready(function(){
-
 	  $.ajax({
             url: "/api/contacts/",
             type: 'GET',

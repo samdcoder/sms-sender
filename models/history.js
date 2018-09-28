@@ -1,10 +1,11 @@
 const mongoose = require('mongoose');
 
-const historySchema = mongoose.Schema({
+const historySchema = new mongoose.Schema({
 	_id: {type: mongoose.Schema.Types.ObjectId,  ref: 'Id'},
 	firstName: String,
 	lastName: String, 
-	otp: String, 
+	otp: String
+	}, 
 	{timestamps: true}
 );
 
