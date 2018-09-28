@@ -19,7 +19,6 @@ $(document).ready(function(){
             'phone': phone
         };
 
-        console.log("user_data = ", user_data);
         $.ajax({    
             url: "/",
             type: 'POST',

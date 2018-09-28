@@ -4,7 +4,7 @@ const path = require('path');
 const fs = require('fs');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-//const User = require('./models/user');
+const History = require('./models/history');
 const env = require('./env');
 const utf8 = require('utf8');
 const PORT = process.env.port || 3000; 
@@ -61,14 +61,27 @@ app.post('/', function(request, response){
 		console.log("request.body = ", request.body);
 		user_message = request.body['message'];
 		user_message = user_message.trim();
-	
+		let status = '0';
 
 	/*	nexmo.message.sendSms(
    			"918149227289" , "918149227289", request.body['message'], {type: 'unicode'},
    				(err, responseData) => {if (responseData) {console.log(responseData);}}
+   					if(responseData['messages'][0]['status'] == '0'){
+						status = '0';
+   					}
+   					else{
+						status = '-1';
+   					}
  				);
  			response.send('SMS Message Sent');
-		*/
+	*/	
+
+	//check the value of status 
+	if(status == '0'){
+		//sent message successfully
+		//update in the database
+	}
+
 		//save data to the database
 	/*	const user = new User({
 			_id: new mongoose.Types.ObjectId(),
