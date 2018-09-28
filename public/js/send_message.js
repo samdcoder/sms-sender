@@ -24,7 +24,6 @@ $(document).ready(function(){
             type: 'POST',
             data: user_data,
             success: function(result){
-                console.log("result = ", result); 
                 if(result.code == 200){
                     alert("successfully sent the message!");
                 }

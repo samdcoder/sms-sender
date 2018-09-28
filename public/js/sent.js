@@ -9,9 +9,7 @@ $(document).ready(function(){
                     result.append('<h1 class="text-danger"> There was some error in fetching the texts! </h1>');
                 }
                 else{
-                  alert("in the else as well!")
                   let data = response['data'];
-                  console.log("data array = ", data);
                   for(var key in data){
                     // need to convert date to IST
                     var dateUTC = new Date(data[key].createdAt);
