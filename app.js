@@ -72,8 +72,8 @@ app.post('/', function(request, response){
 		let firstName = request.body['firstName'];
 		let lastName = request.body['lastName'];
 		console.log("request.body = ", request.body);
-		firstName = firstName.split(':')[1].trim();
-		lastName = lastName.split(':')[1].trim();
+		firstName = firstName.trim();
+		lastName = lastName.trim();
 		user_message = request.body['message'];
 		user_message = user_message.trim();
 		let status = '0';

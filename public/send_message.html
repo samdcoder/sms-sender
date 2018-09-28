@@ -8,7 +8,6 @@
   	 integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
   	 crossorigin="anonymous"></script>
 	<script type="text/javascript" src="/js/send_message.js"></script>
-	<script type="text/javascript" src="/js/details.js"></script>
 	 <link href="https://fonts.googleapis.com/css?family=Fira+Sans" rel="stylesheet">
   	 <link rel="stylesheet" type="text/css" href="/css/style.css">
 	
@@ -28,14 +27,16 @@
 			<form method="post" id="send-message-form" name='send-message-form' action = "/" class="form-horizontal" enctype="multipart/form-data">
 
 			<div class="form-group col-lg-12">
-				<label for="user-message"> Message </label>
-				<textarea rows="4" cols="50" id="user-message" name='user-message' readonly>
+				<label for="user-message"> </label>
+				<textarea rows="4" cols="47" id="user-message" name='user-message' readonly>
 				</textarea>
 			</div>
 		
 			<br>
-			<div class="form-group col-lg-8 text-center">
-				<input class="btn-primary btn-block" id="send-message-button" type="submit" value="Send Message">
+			<div class="text-center">
+				<center>
+					<button class="btn btn-primary" id="send-message-button" type="submit"> Send Message </button>
+				</center>
 			</div>
 		
 		</form>

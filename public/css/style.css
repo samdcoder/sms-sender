@@ -6,10 +6,18 @@ a:hover{
 	text-decoration: none;
 }
 
-.card {
+.card{
         margin: 0 auto; /* Added */
         float: none; /* Added */
-        margin-bottom: 10px; /* Added */
+        margin-bottom: 50px; /* Added */
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+   		max-width: 350px;
+    	text-align: center;
+}
+textarea{
+	margin-left: 555px;
+	margin-top:500;
+
 }
 
 .card:hover{
@@ -29,14 +37,6 @@ a:hover{
 	margin-top: 100px;
 }
 
-
-.card {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    max-width: 400px;
-    margin: auto;
-    text-align: center;
-}
-
 .title {
     color: grey;
     font-size: 18px;
@@ -53,6 +53,7 @@ button {
     width: 300px;
     max-width: 300px;
     font-size: 25px;
+    margin-bottom: 10px;
 }
 
 a {
