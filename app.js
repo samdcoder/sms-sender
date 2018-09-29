@@ -5,16 +5,20 @@ const fs = require('fs');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const History = require('./models/history');
-const env = require('./env');
 const utf8 = require('utf8');
 const PORT = process.env.port || 3000; 
 const Nexmo = require('nexmo');
 const nexmo = new Nexmo({
- apiKey: env.API_KEY,
- apiSecret: env.SECRET
+ apiKey: process.env.API_KEY,
+ apiSecret: process.env.SECRET
 });
 
-mongoose.connect('mongodb+srv://samdcoder:'+env.mongopw+'@smsdata-fkbfi.mongodb.net/test?retryWrites=true');
+const db_url = 'mongodb+srv://samdcoder:'+process.env.mongopw+'@smsdata-fkbfi.mongodb.net/test?retryWrites=true';
+
+mongoose.connect(db_url, function(err){
+	if(err)
+		throw err;
+});
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json()); // for parsing application/json
@@ -71,7 +75,6 @@ app.post('/', function(request, response){
 		let user_message = ``;
 		let firstName = request.body['firstName'];
 		let lastName = request.body['lastName'];
-		console.log("request.body = ", request.body);
 		firstName = firstName.trim();
 		lastName = lastName.trim();
 		user_message = request.body['message'];
@@ -79,17 +82,24 @@ app.post('/', function(request, response){
 		let status = '0';
 
 
-	/*	nexmo.message.sendSms(
+		nexmo.message.sendSms(
    			"918149227289" , "918149227289", request.body['message'], {type: 'unicode'},
-   				(err, responseData) => {if (responseData) {console.log(responseData);}}
-   					if(responseData['messages'][0]['status'] == '0'){
-						status = '0';
+   				(err, responseData) => {
+   					if(err)
+   					{
+   						console.log("error = ", err);
+   						response.send({'message': 'Could not send the message!', 'code': 400});
+   						return;
    					}
+   					
+   					if(responseData && responseData['messages'][0]['status'] == '0'){
+						status = '0';
+					}
    					else{
 						status = '-1';
    					}
- 				);
-	*/	
+ 				});
+		
 
 	//check the value of status 
 	if(status == '0'){
@@ -108,7 +118,7 @@ app.post('/', function(request, response){
 				response.send({'message': err, 'code':400});
 				console.log("Error: ", err);
 			}
-			console.log("No error. result = ", result);
+			
 		});
 
 		response.send({'message': 'Successfully updated the log!', 'code':200});

@@ -9,14 +9,14 @@ a:hover{
 .card{
         margin: 0 auto; /* Added */
         float: none; /* Added */
-        margin-bottom: 50px; /* Added */
+        margin-bottom: 10px; /* Added */
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
    		max-width: 350px;
     	text-align: center;
 }
 textarea{
 	margin-left: 555px;
-	margin-top:500;
+	margin-top:70px;
 
 }
 
