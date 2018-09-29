@@ -15,8 +15,10 @@ a:hover{
     	text-align: center;
 }
 textarea{
-	margin-left: 555px;
-	margin-top:70px;
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
 
 }
 
@@ -31,10 +33,10 @@ textarea{
 	height: 300px;
 	width: 300px;
 	display: inline-block;
-	padding-left: 20px;
-	margin-right:150px;
-	margin-left: 100px;
-	margin-top: 100px;
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
 }
 
 
@@ -71,3 +73,10 @@ button:hover, a:hover {
     opacity: 0.7;
 }
 
+.navbar{
+    width: 100%;
+}
+
+.navbar-wrapper .navbar {
+    width: 100% !important;
+}
