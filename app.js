@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const History = require('./models/history');
 const utf8 = require('utf8');
-const PORT = process.env.port || 3000; 
+const PORT = process.env.PORT || 3000; 
 const Nexmo = require('nexmo');
 const nexmo = new Nexmo({
  apiKey: process.env.API_KEY,
