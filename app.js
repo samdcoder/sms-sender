@@ -13,6 +13,7 @@ const nexmo = new Nexmo({
  apiSecret: process.env.SECRET
 });
 
+console.log(process.env);
 const db_url = 'mongodb+srv://samdcoder:'+process.env.mongopw+'@smsdata-fkbfi.mongodb.net/test?retryWrites=true';
 
 mongoose.connect(db_url, function(err){
